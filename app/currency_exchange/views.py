@@ -1,3 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
+def exchange(request):
+     name = 'Santa Claus'
+
+     context = {
+          'name': name
+     }
+     return render(request=request, template_name='currency_exchange/index.html', context=context)
+
