@@ -6,5 +6,7 @@ def exchange(request):
      context = {
           'name': name
      }
-     return render(request=request, template_name='currency_exchange/index.html', context=context)
+     return render(request=request, 
+                   template_name='currency_exchange/index.html', 
+                   context=context)
 
