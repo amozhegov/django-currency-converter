@@ -1,8 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="card box-shadow m-2 form-wrap">
+                <div class="card-header text-center">
+                    <h2>Currency Exchange Calculator</h2>
+                </div>
+                <form id="form" class="p-3" action="" method="POST"></form>
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-4 mb-0">
+                            <label for="amount">Total</label>
+                            <input id="amount" type="number" class="form-control" placeholder="Enter the amount" {% if from_amount %} value="{{ from_amount }}" {% endif %} name="from-amount">
+                        </div>
+                        <div class="form-group col-md-4 mb-0">
+                            <label for="from_curr">We have</label>
+                            <select class="form-comtrol" id="from_curr" name="from_curr" value="{{ from_curr }}">
+                                {% for curr in currencies %}
+                                    <option value="{{ curr }}" {% if from_curr == curr %}selected{% endif %}>{{ curr }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4 mb-0">
+                            <label for="to_curr">We receive</label>
+                            <select class="form-control" id="to-curr" name="to-curr" value="{{ to_curr }}">
+                                {% for curr in currencies %}
+                                    <option value="{{ curr }}" {% if to_curr == curr %}selected{% endif %}>{{ curr }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="submit-btn mt-3">
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <form action="" method="POST">
-        {% csrf_token %}
         <input type="text" name="amount">
         <select name="from_curr" id=""></select>
         <select name="to_curr" id=""></select>
