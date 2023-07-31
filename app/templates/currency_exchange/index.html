@@ -5,25 +5,25 @@
         <div class="row">
             <div class="card box-shadow m-2 form-wrap">
                 <div class="card-header text-center">
-                    <h2>Currency Exchange Calculator</h2>
+                    <h3>Currency converter </h3>
                 </div>
-                <form id="form" class="p-3" action="" method="POST"></form>
+                <form id="form" class="p-3" action='' method="POST">
                     {% csrf_token %}
                     <div class="form-row">
                         <div class="form-group col-md-4 mb-0">
-                            <label for="amount">Total</label>
-                            <input id="amount" type="number" class="form-control" placeholder="Enter the amount" {% if from_amount %} value="{{ from_amount }}" {% endif %} name="from-amount">
+                            <label for="amount">Amount</label>
+                            <input id='amount' type="number" class="form-control" placeholder="Введите число" {% if from_amount %} value="{{ from_amount }}" {% endif %} name="from-amount">
                         </div>
                         <div class="form-group col-md-4 mb-0">
-                            <label for="from_curr">We have</label>
-                            <select class="form-comtrol" id="from_curr" name="from_curr" value="{{ from_curr }}">
+                            <label for="from_curr">From:</label>
+                            <select class="form-control" id="from_curr" name="from-curr" value="{{ from_curr }}">
                                 {% for curr in currencies %}
                                     <option value="{{ curr }}" {% if from_curr == curr %}selected{% endif %}>{{ curr }}</option>
                                 {% endfor %}
                             </select>
                         </div>
                         <div class="form-group col-md-4 mb-0">
-                            <label for="to_curr">We receive</label>
+                            <label for="to-curr">To:</label>
                             <select class="form-control" id="to-curr" name="to-curr" value="{{ to_curr }}">
                                 {% for curr in currencies %}
                                     <option value="{{ curr }}" {% if to_curr == curr %}selected{% endif %}>{{ curr }}</option>
@@ -35,12 +35,8 @@
                     {% if converted_amount %}
                         <div class="card col-6 p-0 m-auto">
                             <div class="card-header text-center">
-                                <h5> 
-                                    We have 
-                                    <b>{{ from_curr }}</b> 
-                                    We receive
-                                    <b>{{ to_curr }}</b>
-                                </h5>
+                                    <h5>Exchanging <b>{{ from_curr }}</b> You will receive
+                                        <b>{{ to_curr }}</b></h5>
                             </div>
                             <div class="card-body">
                                 {{ converted_amount }}
@@ -53,5 +49,5 @@
                 </form>
             </div>
         </div>
-    </div> 
+    </div>
 {% endblock %}
